@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  dllmain.cpp
+D:\HOOK\httpsendrequestw_hook_dll\dllmain.cpp(73,20): warning C4309: “=”: 截断常量值
+  httpsendrequestw_hook_dll.vcxproj -> D:\HOOK\HookHttpSendRequestW\Debug\httpsendrequestw_hook_dll.dll
