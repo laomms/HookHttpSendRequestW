@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <tchar.h>
@@ -180,13 +180,17 @@ int Privileges()
 
 DWORD GetPid(char* ProcName)
 {
+	std::wstring w;
+	std::copy(ProcName, ProcName + strlen(ProcName), back_inserter(w));
+	const WCHAR* pwcsName = w.c_str();
+
 	HANDLE hsnap;
 	PROCESSENTRY32 pt;
 	hsnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	pt.dwSize = sizeof(PROCESSENTRY32);
 	do {
 
-		if (!strcmp(pt.szExeFile, ProcName)) {
+		if (!wcscmp(pt.szExeFile, pwcsName)) {
 			DWORD pid = pt.th32ProcessID;
 			CloseHandle(hsnap);
 			return pid;
